@@ -8,8 +8,8 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative pb-16 md:pb-24 overflow-hidden"
-      style={{ backgroundColor: "#0B0014", paddingTop: "160px" }}
+      className="relative w-full overflow-hidden flex flex-col items-center"
+      style={{ backgroundColor: "#0B0014", paddingTop: "140px", paddingBottom: "80px" }}
     >
       {/* Glow background */}
       <div
@@ -19,16 +19,19 @@ export default function Hero() {
         }}
       />
 
-      <div className="container relative z-10 px-4 md:px-6 mx-auto">
+      <div className="relative z-10 w-full max-w-6xl px-4 md:px-8 mx-auto flex flex-col items-center">
         {/* Text Content - Centered */}
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto gap-6">
+        <div 
+          className="flex flex-col items-center text-center max-w-4xl w-full mx-auto"
+          style={{ gap: "40px" }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <span
-              className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold mb-2"
+              className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold"
               style={{
                 backgroundColor: "rgba(255,197,66,0.1)",
                 color: "#FFC542",
@@ -40,7 +43,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight leading-[1.05]"
+            className="text-5xl md:text-6xl lg:text-[5rem] font-extrabold tracking-tight leading-[1.1]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
@@ -51,7 +54,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl max-w-2xl mt-4"
+            className="text-lg md:text-xl max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -63,7 +66,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center gap-4 mt-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
@@ -91,7 +94,8 @@ export default function Hero() {
 
         {/* Dashboard/App Mockup - Massive Centered Image */}
         <motion.div
-          className="relative mt-20 md:mt-24 mx-auto w-full max-w-6xl"
+          className="relative mx-auto w-full max-w-5xl"
+          style={{ marginTop: "80px" }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
