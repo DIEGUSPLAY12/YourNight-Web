@@ -18,9 +18,19 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("");
   const { scrollY } = useScroll();
 
-  /* Reducir el header levemente al hacer scroll */
-  const headerWidth = useTransform(scrollY, [0, 100], ["100%", "95%"]);
-  const headerY = useTransform(scrollY, [0, 100], [0, 10]);
+  /* Transiciones progresivas de morphing según el scroll (0 a 80px) */
+  // Usamos 1400px en lugar de 2000px para que en pantallas gigantes el header no se estire demasiado y mantenga un margen elegante
+  const navMaxWidth = useTransform(scrollY, [0, 80], ["1400px", "1024px"]); // max-w-5xl = 1024px
+  const navTop = useTransform(scrollY, [0, 80], ["0px", "16px"]); // top-0 a top-4
+  const navRadius = useTransform(scrollY, [0, 80], ["0px", "9999px"]); // full header a pill
+  const navGap = useTransform(scrollY, [0, 80], ["40px", "12px"]); // Gap de links: muy espaciado a compacto
+  const navBg = useTransform(scrollY, [0, 80], ["rgba(11, 0, 20, 0)", "rgba(11, 0, 20, 0.65)"]);
+  const navBorder = useTransform(scrollY, [0, 80], ["1px solid rgba(201, 184, 232, 0)", "1px solid rgba(201, 184, 232, 0.15)"]);
+  const navShadow = useTransform(scrollY, [0, 80], [
+    "0 8px 32px rgba(0, 0, 0, 0), inset 0 1px 0 rgba(255,255,255,0)",
+    "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)"
+  ]);
+  const navBlur = useTransform(scrollY, [0, 80], ["blur(0px)", "blur(20px)"]);
 
   useEffect(() => {
     /* Intersection Observer para el ScrollSpy */
@@ -48,20 +58,25 @@ export default function Navbar() {
   }
 
   return (
-    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none w-full">
       <motion.header
         role="banner"
-        className="pointer-events-auto flex flex-col w-full max-w-5xl"
-        style={{ width: headerWidth, y: headerY }}
+        className="pointer-events-auto flex flex-col px-4 md:px-0"
+        style={{ 
+          width: "100%",
+          maxWidth: navMaxWidth, 
+          marginTop: navTop,
+        }}
       >
-        <div
-          className="flex items-center justify-between h-[60px] px-5 md:px-8 rounded-full transition-all duration-300 ease-out"
+        <motion.div
+          className="flex items-center justify-between h-[70px] md:h-[70px] px-6 md:px-12 transition-none w-full"
           style={{
-            background: "rgba(11, 0, 20, 0.65)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(201, 184, 232, 0.15)",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
+            background: navBg,
+            backdropFilter: navBlur,
+            WebkitBackdropFilter: navBlur,
+            border: navBorder,
+            boxShadow: navShadow,
+            borderRadius: navRadius,
           }}
         >
           {/* Logo */}
@@ -77,9 +92,10 @@ export default function Navbar() {
           </Link>
 
           {/* Links desktop con animacion Apple */}
-          <nav
-            className="hidden md:flex items-center gap-2"
+          <motion.nav
+            className="hidden md:flex items-center"
             aria-label="Navegación principal"
+            style={{ gap: navGap }}
           >
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
@@ -107,7 +123,7 @@ export default function Navbar() {
                 </a>
               );
             })}
-          </nav>
+          </motion.nav>
 
           {/* CTA desktop + hamburger mobile */}
           <div className="flex items-center gap-3 shrink-0">
@@ -139,7 +155,7 @@ export default function Navbar() {
               {mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Menú móvil flotante */}
         <AnimatePresence>

@@ -8,8 +8,8 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden"
-      style={{ backgroundColor: "#0B0014" }}
+      className="relative pb-16 md:pb-24 overflow-hidden"
+      style={{ backgroundColor: "#0B0014", paddingTop: "160px" }}
     >
       {/* Glow background */}
       <div
