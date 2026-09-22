@@ -2,263 +2,143 @@
 
 import { motion } from "motion/react";
 import Button from "@/components/ui/Button";
-import { Download, ChevronDown, Smartphone } from "lucide-react";
-
-/* Variantes de animación — stagger en los elementos del hero */
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] },
-  },
-};
+import { Download, ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-[100dvh] flex items-center overflow-hidden"
-      aria-label="Sección principal"
+      className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden"
+      style={{ backgroundColor: "#0B0014" }}
     >
-      {/* Fondo decorativo: gradiente radial desde el acento */}
+      {/* Glow background */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] pointer-events-none blur-[120px] opacity-30"
         style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 65% 40%, rgba(255,62,165,0.08) 0%, transparent 70%)",
-        }}
-      />
-      {/* Ruido sutil en el fondo */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-          backgroundSize: "200px 200px",
+          background: "radial-gradient(circle, #FF3EA5 0%, transparent 70%)",
         }}
       />
 
-      <div className="container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-24 lg:py-0">
-          {/* ── Copy ── */}
+      <div className="container relative z-10 px-4 md:px-6 mx-auto">
+        {/* Text Content - Centered */}
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto gap-6">
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col gap-6 max-w-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            {/* Badge 18+ */}
-            <motion.div variants={itemVariants}>
-              <span
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium"
-                style={{
-                  background: "rgba(255,197,66,0.12)",
-                  border: "1px solid rgba(255,197,66,0.3)",
-                  color: "#FFC542",
-                }}
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-[#FFC542] animate-pulse"
-                  aria-hidden="true"
-                />
-                Solo para mayores de 18 años
-              </span>
-            </motion.div>
-
-            {/* Titular */}
-            <motion.h1 variants={itemVariants} className="text-display">
-              Tu noche,{" "}
-              <span className="text-gradient">registrada.</span>
-              <br />
-              Revívela.
-            </motion.h1>
-
-            {/* Subtítulo */}
-            <motion.p
-              variants={itemVariants}
-              className="text-subheading"
-              style={{ maxWidth: "50ch" }}
+            <span
+              className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold mb-2"
+              style={{
+                backgroundColor: "rgba(255,197,66,0.1)",
+                color: "#FFC542",
+                border: "1px solid rgba(255,197,66,0.2)",
+              }}
             >
-              YourNight es la app para grupos de amigos que quieren más que un
-              chat. Rankings en directo, votación al MVP y resúmenes que duran
-              para siempre.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap items-start gap-4"
-            >
-              <div className="flex flex-col gap-1.5">
-                <Button
-                  href="#descarga"
-                  variant="primary"
-                  size="lg"
-                  aria-label="Descargar YourNight APK"
-                >
-                  <Download size={18} aria-hidden="true" />
-                  Descargar APK
-                </Button>
-                <p
-                  className="text-xs pl-1"
-                  style={{ color: "rgba(201,184,232,0.5)" }}
-                >
-                  <Smartphone
-                    size={11}
-                    className="inline mr-1"
-                    aria-hidden="true"
-                  />
-                  Android — instalación manual. Te pedirá permiso la primera
-                  vez.
-                </p>
-              </div>
-
-              <Button
-                href="#como-funciona"
-                variant="ghost"
-                size="lg"
-                aria-label="Ver cómo funciona YourNight"
-              >
-                Cómo funciona
-                <ChevronDown size={16} aria-hidden="true" />
-              </Button>
-            </motion.div>
+              🚀 Beta privada abierta para grupos
+            </span>
           </motion.div>
 
-          {/* ── Visual placeholder ── */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="relative flex justify-center lg:justify-end"
-            aria-label="Vista previa de la app (próximamente)"
+          <motion.h1
+            className="text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight leading-[1.05]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            style={{ color: "#C9B8E8", fontFamily: "var(--font-display)" }}
           >
-            {/* Marco del teléfono */}
-            <div
-              className="relative"
-              style={{ width: "min(340px, 100%)" }}
+            Tu noche, <span style={{ color: "#FF3EA5" }}>registrada.</span>
+            <br /> Revívela.
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl max-w-2xl mt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            style={{ color: "rgba(201,184,232,0.7)" }}
+          >
+            YourNight es la app para grupos de amigos que quieren más que un
+            chat. Rankings en directo, votación al MVP y resúmenes que duran
+            para siempre.
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row items-center gap-4 mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          >
+            <Button
+              href="#descarga"
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto px-8 !rounded-full"
             >
-              {/* Glow detrás */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 rounded-[2.5rem] blur-3xl"
-                style={{ background: "rgba(255,62,165,0.2)" }}
-              />
-
-              {/* Cuerpo del teléfono */}
-              <div
-                className="relative rounded-[2.5rem] overflow-hidden"
-                style={{
-                  border: "1px solid rgba(255,62,165,0.3)",
-                  background: "#1B0F2E",
-                  aspectRatio: "9/19",
-                  boxShadow:
-                    "0 32px 80px rgba(11,0,20,0.8), inset 0 1px 0 rgba(255,255,255,0.06)",
-                }}
-              >
-                {/* Pantalla placeholder */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center"
-                    style={{ background: "rgba(255,62,165,0.15)" }}
-                  >
-                    <span
-                      className="text-3xl"
-                      role="img"
-                      aria-label="Luna"
-                    >
-                      🌙
-                    </span>
-                  </div>
-                  <div className="text-center space-y-2">
-                    <p
-                      className="text-sm font-semibold"
-                      style={{ color: "#C9B8E8" }}
-                    >
-                      YourNight
-                    </p>
-                    <p
-                      className="text-xs"
-                      style={{ color: "rgba(201,184,232,0.4)" }}
-                    >
-                      Capturas próximamente
-                    </p>
-                  </div>
-                  {/* Barras decorativas de ranking */}
-                  <div className="w-full space-y-2 mt-4">
-                    {[85, 62, 48, 31].map((width, i) => (
-                      <motion.div
-                        key={i}
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.6 + i * 0.08, duration: 0.4 }}
-                      >
-                        <span
-                          className="text-xs font-mono w-4 text-right"
-                          style={{ color: "rgba(201,184,232,0.5)" }}
-                        >
-                          {i + 1}
-                        </span>
-                        <div
-                          className="h-5 rounded-md"
-                          style={{
-                            width: `${width}%`,
-                            background:
-                              i === 0
-                                ? "linear-gradient(90deg, #FF3EA5, #ff69b9)"
-                                : "rgba(201,184,232,0.1)",
-                            border:
-                              i === 0
-                                ? "none"
-                                : "1px solid rgba(201,184,232,0.08)",
-                          }}
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Notch */}
-                <div
-                  aria-hidden="true"
-                  className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 rounded-full"
-                  style={{ background: "#0B0014" }}
-                />
-              </div>
-            </div>
+              <Download size={18} className="mr-2" />
+              Descargar APK
+            </Button>
+            <Button
+              href="#como-funciona"
+              variant="ghost"
+              size="lg"
+              className="w-full sm:w-auto px-8 !rounded-full"
+            >
+              Ver cómo funciona
+              <ChevronRight size={18} className="ml-1" />
+            </Button>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        aria-hidden="true"
-      >
+        {/* Dashboard/App Mockup - Massive Centered Image */}
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          className="relative mt-20 md:mt-24 mx-auto w-full max-w-6xl"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
         >
-          <ChevronDown
-            size={20}
-            style={{ color: "rgba(201,184,232,0.3)" }}
-          />
+          <div
+            className="rounded-[2rem] md:rounded-[3rem] overflow-hidden relative"
+            style={{
+              backgroundColor: "#1B0F2E",
+              border: "1px solid rgba(255, 62, 165, 0.2)",
+              aspectRatio: "16/9",
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 100px rgba(255, 62, 165, 0.1)",
+            }}
+          >
+            {/* Top Bar for Desktop Mockup feeling */}
+            <div
+              className="h-10 w-full flex items-center px-6 gap-2"
+              style={{ backgroundColor: "rgba(11,0,20,0.5)", borderBottom: "1px solid rgba(201,184,232,0.1)" }}
+            >
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "rgba(255,62,165,0.5)" }} />
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "rgba(255,197,66,0.5)" }} />
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "rgba(201,184,232,0.2)" }} />
+              </div>
+            </div>
+            
+            <div className="absolute inset-0 top-10 flex flex-col items-center justify-center p-8">
+              <span className="text-6xl mb-4">🌙</span>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: "#C9B8E8" }}>Visualización de la App</h3>
+              <p style={{ color: "rgba(201,184,232,0.5)" }}>El dashboard principal de grupos se mostrará aquí.</p>
+              
+              {/* Fake UI Elements */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mt-10">
+                {[1, 2, 3].map((i) => (
+                  <div 
+                    key={i} 
+                    className="h-32 rounded-2xl p-6 flex flex-col justify-between"
+                    style={{ backgroundColor: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}
+                  >
+                    <div className="w-1/2 h-4 rounded" style={{ backgroundColor: "rgba(201,184,232,0.2)" }} />
+                    <div className="w-full h-8 rounded" style={{ backgroundColor: "rgba(255,62,165,0.1)" }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }

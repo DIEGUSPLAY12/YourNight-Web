@@ -1,221 +1,135 @@
 "use client";
 
 import { motion } from "motion/react";
-import {
-  Lock,
-  Clock,
-  Zap,
-  TrendingUp,
-  Star,
-  Award,
-  Camera,
-  FileText,
-  MessageCircle,
-} from "lucide-react";
+import { CheckCircle2, Star, Calendar, Camera } from "lucide-react";
 
 const features = [
   {
-    icon: Lock,
-    title: "Grupos privados",
-    description: "Solo entran los que tú invitas. Sin registros públicos ni perfiles visibles.",
-    size: "normal",
-    accent: false,
+    id: "planifica",
+    title: "Eventos compartidos.",
+    subtitle: "Planifica en segundos.",
+    description: "Se acabó el caos de los grupos de WhatsApp. Crea un evento, invita a tus amigos y que cada uno confirme su asistencia con un clic.",
+    tag: "Organiza",
+    tagColor: "#FF3EA5",
+    icon: <Calendar className="w-5 h-5" />,
+    reverse: false,
+    benefits: [
+      "Confirma asistencia al instante",
+      "Lugar y hora siempre a mano",
+      "Notificaciones automáticas antes del evento"
+    ]
   },
   {
-    icon: Clock,
-    title: "Eventos con horario",
-    description: "El evento se abre y se cierra solo según el horario. Sin gestiones manuales.",
-    size: "normal",
-    accent: false,
+    id: "votar",
+    title: "Votación al MVP.",
+    subtitle: "Coronad al rey de la noche.",
+    description: "Al día siguiente, todos votan anónimamente quién fue el MVP de la noche. Un ranking histórico mantendrá el pique vivo para siempre.",
+    tag: "Rankings",
+    tagColor: "#FFC542",
+    icon: <Star className="w-5 h-5" />,
+    reverse: true,
+    benefits: [
+      "Votaciones 100% anónimas",
+      "Tabla de clasificación (Leaderboard)",
+      "Medallas y logros para los mejores"
+    ]
   },
   {
-    icon: Zap,
-    title: "Contador con un toque",
-    description: "Registra consumiciones al instante, incluso sin conexión. Los datos se sincronizan cuando vuelves a tener red.",
-    size: "wide",
-    accent: true,
-  },
-  {
-    icon: TrendingUp,
-    title: "Ranking en directo",
-    description: "Todos ven la clasificación actualizada en tiempo real durante el evento.",
-    size: "normal",
-    accent: false,
-  },
-  {
-    icon: Star,
-    title: "Votación secreta al MVP",
-    description: "Cada uno vota en privado. Los resultados se revelan a la vez al cerrar el evento.",
-    size: "normal",
-    accent: false,
-  },
-  {
-    icon: Award,
-    title: "Clasificación mensual",
-    description: "Los puntos de cada evento se acumulan. Al cerrar el mes, se publica el rey del mes.",
-    size: "tall",
-    accent: false,
-  },
-  {
-    icon: Camera,
-    title: "Fotos del evento",
-    description: "Sube y comparte las fotos de la noche, todas en un solo lugar.",
-    size: "normal",
-    accent: false,
-  },
-  {
-    icon: FileText,
-    title: "Resúmenes automáticos",
-    description: "Al terminar el evento y el mes, la app genera un resumen completo sin que hagas nada.",
-    size: "normal",
-    accent: false,
-  },
-  {
-    icon: MessageCircle,
-    title: "Chat de grupo",
-    description: "Comunícate con tu grupo directamente dentro de la app.",
-    size: "normal",
-    accent: false,
-  },
+    id: "revivir",
+    title: "Galería de la noche.",
+    subtitle: "Todas las fotos en un solo lugar.",
+    description: "Sube las fotos de la noche al evento. Ya no tienes que pedir 'pasad las fotos' al día siguiente. Tu álbum privado para el grupo.",
+    tag: "Recuerda",
+    tagColor: "#7a4db8",
+    icon: <Camera className="w-5 h-5" />,
+    reverse: false,
+    benefits: [
+      "Sube fotos sin perder calidad",
+      "Álbum vinculado al evento",
+      "Solo visible para los asistentes"
+    ]
+  }
 ];
-
-/* Variantes */
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95, y: 16 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] },
-  },
-};
 
 export default function Features() {
   return (
-    <section
-      id="funciones"
-      className="section"
-      aria-labelledby="features-heading"
-    >
-      <div className="container">
-        {/* Header */}
-        <motion.div
-          className="text-center max-w-2xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-        >
-          <h2 id="features-heading" className="text-heading mb-4">
-            Todo lo que incluye{" "}
-            <span className="text-gradient">la app</span>
-          </h2>
-          <p className="text-subheading">
-            Cada función está pensada para una noche real con amigos reales.
-          </p>
-        </motion.div>
+    <section id="funciones" className="py-24 overflow-hidden" style={{ backgroundColor: "#0B0014" }}>
+      <div className="container mx-auto px-4 md:px-6 space-y-32">
+        {features.map((feature, idx) => (
+          <div 
+            key={feature.id} 
+            className={`flex flex-col lg:flex-row items-center gap-16 lg:gap-24 ${feature.reverse ? 'lg:flex-row-reverse' : ''}`}
+          >
+            {/* Texto (Mitad) */}
+            <motion.div 
+              className="flex-1 w-full space-y-6"
+              initial={{ opacity: 0, x: feature.reverse ? 40 : -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <div 
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md font-semibold text-sm mb-2"
+                style={{ backgroundColor: feature.tagColor, color: "#fff" }}
+              >
+                {feature.icon}
+                {feature.tag}
+              </div>
+              
+              <h2 
+                className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                style={{ color: "#C9B8E8", fontFamily: "var(--font-display)", lineHeight: 1.1 }}
+              >
+                {feature.title} <br />
+                <span style={{ color: feature.tagColor }}>{feature.subtitle}</span>
+              </h2>
+              
+              <p className="text-lg md:text-xl leading-relaxed" style={{ color: "rgba(201,184,232,0.8)" }}>
+                {feature.description}
+              </p>
 
-        {/* Bento grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-auto"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          {features.map((feature, i) => {
-            const Icon = feature.icon;
-            const isAccent = feature.accent;
-            const isWide = feature.size === "wide";
+              <ul className="space-y-4 pt-4">
+                {feature.benefits.map((benefit, i) => (
+                  <li key={i} className="flex items-start gap-3 text-lg font-medium" style={{ color: "#C9B8E8" }}>
+                    <CheckCircle2 className="w-6 h-6 shrink-0 mt-0.5" style={{ color: feature.tagColor }} />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
 
-            return (
-              <motion.article
-                key={feature.title}
-                variants={cardVariants}
-                className={`group relative rounded-2xl p-6 overflow-hidden transition-all duration-[220ms] ${
-                  isWide ? "sm:col-span-2" : ""
-                }`}
-                style={{
-                  background: isAccent
-                    ? "linear-gradient(135deg, rgba(255,62,165,0.15) 0%, rgba(255,197,66,0.08) 100%)"
-                    : i % 4 === 0
-                    ? "rgba(37, 22, 69, 0.6)"
-                    : "rgba(27,15,46,0.8)",
-                  border: isAccent
-                    ? "1px solid rgba(255,62,165,0.3)"
-                    : "1px solid rgba(201,184,232,0.07)",
-                  cursor: "default",
+            {/* Imagen/UI (Mitad) */}
+            <motion.div 
+              className="flex-1 w-full"
+              initial={{ opacity: 0, x: feature.reverse ? -40 : 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            >
+              <div 
+                className="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
+                style={{ 
+                  backgroundColor: "#1B0F2E", 
+                  border: `1px solid rgba(255,255,255,0.05)`,
+                  boxShadow: `0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)`
                 }}
               >
-                {/* Glow hover — solo en desktop */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: isAccent
-                      ? "radial-gradient(circle at 50% 0%, rgba(255,62,165,0.12), transparent 70%)"
-                      : "radial-gradient(circle at 50% 0%, rgba(201,184,232,0.04), transparent 70%)",
-                  }}
+                {/* Glow del color del tag detrás */}
+                <div 
+                  className="absolute inset-0 blur-[100px] opacity-20" 
+                  style={{ backgroundColor: feature.tagColor }} 
                 />
-
-                {/* Icono */}
-                <div
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-xl mb-4"
-                  style={{
-                    background: isAccent
-                      ? "rgba(255,62,165,0.2)"
-                      : "rgba(201,184,232,0.07)",
-                    border: isAccent
-                      ? "1px solid rgba(255,62,165,0.3)"
-                      : "1px solid rgba(201,184,232,0.1)",
-                  }}
-                >
-                  <Icon
-                    size={18}
-                    style={{ color: isAccent ? "#FF3EA5" : "#FFC542" }}
-                    aria-hidden="true"
-                  />
+                
+                {/* Elementos UI Fake */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
+                  <div className="w-3/4 h-12 rounded-xl" style={{ backgroundColor: "rgba(201,184,232,0.05)" }} />
+                  <div className="w-1/2 h-8 rounded-xl" style={{ backgroundColor: "rgba(201,184,232,0.1)" }} />
+                  <div className="w-full h-32 rounded-xl mt-4" style={{ backgroundColor: feature.tagColor, opacity: 0.15 }} />
                 </div>
-
-                {/* Contenido */}
-                <h3
-                  className="text-sm font-semibold mb-2"
-                  style={{
-                    color: "#C9B8E8",
-                    fontFamily: "var(--font-display)",
-                  }}
-                >
-                  {feature.title}
-                </h3>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "rgba(201,184,232,0.55)" }}
-                >
-                  {feature.description}
-                </p>
-
-                {/* Etiqueta "Destacado" en la card acento */}
-                {isAccent && (
-                  <span
-                    className="absolute top-4 right-4 text-[10px] font-semibold px-2 py-0.5 rounded-full"
-                    style={{
-                      background: "rgba(255,62,165,0.15)",
-                      border: "1px solid rgba(255,62,165,0.3)",
-                      color: "#FF3EA5",
-                    }}
-                  >
-                    Clave
-                  </span>
-                )}
-              </motion.article>
-            );
-          })}
-        </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        ))}
       </div>
     </section>
   );

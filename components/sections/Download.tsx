@@ -1,162 +1,75 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
 import Button from "@/components/ui/Button";
-import { Download, Smartphone, Mail, CheckCircle } from "lucide-react";
+import { Download, ChevronRight } from "lucide-react";
 
 export default function DownloadSection() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  async function handleEmailSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    setLoading(true);
-    /* Simulación — aquí conectarías con tu backend/lista de espera */
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitted(true);
-    setLoading(false);
-  }
-
   return (
-    <section
-      id="descarga"
-      className="section"
-      aria-labelledby="download-heading"
-    >
-      <div className="container">
-        <motion.div
-          className="relative rounded-3xl overflow-hidden text-center px-6 py-16 md:py-24"
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(27,15,46,0.95) 0%, rgba(11,0,20,1) 100%)",
-            border: "1px solid rgba(255,62,165,0.2)",
-          }}
-        >
-          {/* Fondo decorativo */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,62,165,0.12) 0%, transparent 70%)",
-            }}
-          />
+    <section id="descarga" className="py-24 px-4 md:px-6" style={{ backgroundColor: "#0B0014" }}>
+      <motion.div 
+        className="container mx-auto max-w-5xl rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+        style={{
+          backgroundColor: "#1B0F2E",
+          boxShadow: "0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)"
+        }}
+      >
+        {/* Glow Effects */}
+        <div 
+          className="absolute top-0 right-0 w-96 h-96 blur-[100px] opacity-20 pointer-events-none rounded-full translate-x-1/3 -translate-y-1/3"
+          style={{ backgroundColor: "#FF3EA5" }}
+        />
+        <div 
+          className="absolute bottom-0 left-0 w-96 h-96 blur-[100px] opacity-10 pointer-events-none rounded-full -translate-x-1/3 translate-y-1/3"
+          style={{ backgroundColor: "#FFC542" }}
+        />
 
-          <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center gap-8">
-            {/* Título */}
-            <div>
-              <h2
-                id="download-heading"
-                className="text-heading mb-3"
-              >
-                Empieza esta noche.{" "}
-                <span className="text-gradient">Es gratis.</span>
-              </h2>
-              <p className="text-subheading">
-                Descarga YourNight, crea tu grupo e invita a tus amigos. Todo
-                listo en menos de dos minutos.
-              </p>
-            </div>
+        <div className="relative z-10 flex flex-col items-center">
+          <h2 
+            className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight leading-[1.1]"
+            style={{ color: "#C9B8E8", fontFamily: "var(--font-display)" }}
+          >
+            ¿Listo para tu próxima <br/>
+            <span style={{ color: "#FF3EA5" }}>noche épica?</span>
+          </h2>
+          
+          <p 
+            className="text-lg md:text-xl max-w-2xl mb-10"
+            style={{ color: "rgba(201,184,232,0.7)" }}
+          >
+            Únete a cientos de grupos que ya están registrando sus noches, votando al MVP y guardando recuerdos imborrables con YourNight.
+          </p>
 
-            {/* Botón descarga Android */}
-            <div className="flex flex-col items-center gap-2">
-              <Button
-                href="#"
-                variant="primary"
-                size="lg"
-                aria-label="Descargar YourNight APK para Android"
-              >
-                <Download size={20} aria-hidden="true" />
-                Descargar para Android
-              </Button>
-              <p
-                className="text-xs text-center max-w-xs"
-                style={{ color: "rgba(201,184,232,0.45)" }}
-              >
-                <Smartphone size={11} className="inline mr-1" aria-hidden="true" />
-                Instalación manual (APK). Android te pedirá permiso para
-                instalar desde fuentes externas la primera vez.
-              </p>
-            </div>
-
-            {/* Separador */}
-            <div
-              className="w-full"
-              style={{ borderTop: "1px solid rgba(201,184,232,0.08)" }}
-            />
-
-            {/* Lista de espera iPhone */}
-            <div className="w-full max-w-sm">
-              <p
-                className="text-sm font-medium mb-3 text-center"
-                style={{ color: "rgba(201,184,232,0.7)" }}
-              >
-                ¿Tienes iPhone?
-              </p>
-
-              {!submitted ? (
-                <form
-                  onSubmit={handleEmailSubmit}
-                  className="flex flex-col sm:flex-row gap-2"
-                  aria-label="Lista de espera para iPhone"
-                >
-                  <label htmlFor="ios-email" className="sr-only">
-                    Tu correo electrónico
-                  </label>
-                  <input
-                    id="ios-email"
-                    type="email"
-                    required
-                    placeholder="tu@correo.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 rounded-xl px-4 py-3 text-sm outline-none"
-                    style={{
-                      background: "rgba(201,184,232,0.07)",
-                      border: "1px solid rgba(201,184,232,0.15)",
-                      color: "#C9B8E8",
-                    }}
-                    aria-label="Tu correo electrónico para la lista de espera de iPhone"
-                  />
-                  <Button
-                    type="submit"
-                    variant="ghost"
-                    size="md"
-                    disabled={loading}
-                    aria-label="Unirme a la lista de espera para iPhone"
-                  >
-                    <Mail size={16} aria-hidden="true" />
-                    {loading ? "Enviando…" : "Avisarme"}
-                  </Button>
-                </form>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl"
-                  style={{
-                    background: "rgba(255,197,66,0.08)",
-                    border: "1px solid rgba(255,197,66,0.2)",
-                  }}
-                >
-                  <CheckCircle size={16} style={{ color: "#FFC542" }} aria-hidden="true" />
-                  <span className="text-sm" style={{ color: "#FFC542" }}>
-                    ¡Apuntado! Te avisamos cuando llegue.
-                  </span>
-                </motion.div>
-              )}
-            </div>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <Button
+              href="#"
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto px-8 !rounded-full shadow-[0_0_40px_rgba(255,62,165,0.4)]"
+            >
+              <Download size={18} className="mr-2" />
+              Descargar APK ahora
+            </Button>
+            <Button
+              href="#contacto"
+              variant="ghost"
+              size="lg"
+              className="w-full sm:w-auto px-8 !rounded-full"
+            >
+              Hablar con soporte
+              <ChevronRight size={18} className="ml-1" />
+            </Button>
           </div>
-        </motion.div>
-      </div>
+          
+          <p className="text-sm mt-6 font-medium" style={{ color: "rgba(201,184,232,0.4)" }}>
+            Versión 1.0.0 (Beta) — Android 9.0 o superior requerido.
+          </p>
+        </div>
+      </motion.div>
     </section>
   );
 }
