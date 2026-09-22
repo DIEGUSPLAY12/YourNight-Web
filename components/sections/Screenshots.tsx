@@ -16,13 +16,15 @@ export default function Screenshots() {
   return (
     <section
       id="capturas"
-      className="section"
+      className="w-full flex flex-col items-center"
+      style={{ paddingTop: "120px", paddingBottom: "120px" }}
       aria-labelledby="screenshots-heading"
     >
-      <div className="container">
+      <div className="w-full max-w-6xl px-4 md:px-8 mx-auto">
         {/* Header */}
         <motion.div
-          className="text-center max-w-2xl mx-auto mb-10"
+          className="w-full"
+          style={{ textAlign: "center", margin: "0 auto", maxWidth: "42rem", marginBottom: "80px" }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}

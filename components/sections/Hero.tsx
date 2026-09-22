@@ -101,12 +101,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.23, 1, 0.32, 1] }}
         >
           <div
-            className="rounded-[2rem] md:rounded-[3rem] overflow-hidden relative"
+            className="rounded-[2rem] md:rounded-[3rem] overflow-hidden relative flex flex-col"
             style={{
               backgroundColor: "#1B0F2E",
               border: "1px solid rgba(255, 62, 165, 0.2)",
-              aspectRatio: "16/9",
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 100px rgba(255, 62, 165, 0.1)",
+              minHeight: "500px"
             }}
           >
             {/* Top Bar for Desktop Mockup feeling */}
@@ -121,13 +121,18 @@ export default function Hero() {
               </div>
             </div>
             
-            <div className="absolute inset-0 top-10 flex flex-col items-center justify-center p-8">
-              <span className="text-6xl mb-4">🌙</span>
-              <h3 className="text-2xl font-bold mb-2" style={{ color: "#C9B8E8" }}>Visualización de la App</h3>
-              <p style={{ color: "rgba(201,184,232,0.5)" }}>El dashboard principal de grupos se mostrará aquí.</p>
+            <div 
+              className="relative flex flex-col items-center justify-center p-8 flex-1"
+              style={{ paddingTop: "60px", paddingBottom: "60px" }}
+            >
+              <div className="flex flex-col items-center text-center" style={{ gap: "24px" }}>
+                <span className="text-6xl">🌙</span>
+                <h3 className="text-3xl font-bold" style={{ color: "#C9B8E8" }}>Visualización de la App</h3>
+                <p className="text-lg" style={{ color: "rgba(201,184,232,0.5)" }}>El dashboard principal de grupos se mostrará aquí.</p>
+              </div>
               
               {/* Fake UI Elements */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mt-10">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl" style={{ marginTop: "64px" }}>
                 {[1, 2, 3].map((i) => (
                   <div 
                     key={i} 

@@ -63,14 +63,16 @@ export default function Contact() {
   return (
     <section
       id="contacto"
-      className="section section-surface"
+      className="w-full flex flex-col items-center"
+      style={{ backgroundColor: "#1B0F2E", paddingTop: "120px", paddingBottom: "120px" }}
       aria-labelledby="contact-heading"
     >
-      <div className="container">
-        <div className="max-w-xl mx-auto">
+      <div className="w-full max-w-6xl px-4 md:px-8 flex flex-col items-center" style={{ margin: "0 auto" }}>
+        <div className="w-full max-w-xl flex flex-col w-full" style={{ margin: "0 auto" }}>
           {/* Header */}
           <motion.div
-            className="text-center mb-10"
+            className="w-full"
+            style={{ textAlign: "center", marginBottom: "64px" }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}

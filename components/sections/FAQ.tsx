@@ -140,14 +140,16 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="section"
+      className="w-full flex flex-col items-center"
+      style={{ paddingTop: "120px", paddingBottom: "120px" }}
       aria-labelledby="faq-heading"
     >
-      <div className="container">
-        <div className="max-w-2xl mx-auto">
+      <div className="w-full max-w-6xl px-4 md:px-8 flex flex-col items-center" style={{ margin: "0 auto" }}>
+        <div className="w-full max-w-2xl flex flex-col w-full" style={{ margin: "0 auto" }}>
           {/* Header */}
           <motion.div
-            className="text-center mb-12"
+            className="w-full"
+            style={{ textAlign: "center", marginBottom: "64px" }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -162,8 +164,8 @@ export default function FAQ() {
             </p>
           </motion.div>
 
-          {/* Acordeón */}
           <motion.div
+            className="w-full"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.1 }}

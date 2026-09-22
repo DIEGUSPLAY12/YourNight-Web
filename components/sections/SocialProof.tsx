@@ -5,10 +5,10 @@ import { motion } from "motion/react";
 export default function SocialProof() {
   return (
     <section 
-      className="py-12 border-b"
-      style={{ backgroundColor: "#0B0014", borderColor: "rgba(201,184,232,0.1)" }}
+      className="border-b w-full flex flex-col items-center"
+      style={{ backgroundColor: "#0B0014", borderColor: "rgba(201,184,232,0.1)", paddingTop: "60px", paddingBottom: "60px" }}
     >
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="w-full max-w-6xl px-4 md:px-8 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}

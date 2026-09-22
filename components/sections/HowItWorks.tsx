@@ -23,9 +23,9 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="como-funciona" className="py-24" style={{ backgroundColor: "#0B0014" }}>
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section id="como-funciona" className="w-full flex flex-col items-center" style={{ backgroundColor: "#0B0014", paddingTop: "120px", paddingBottom: "120px" }}>
+      <div className="w-full max-w-6xl px-4 md:px-8 mx-auto">
+        <div className="w-full" style={{ textAlign: "center", margin: "0 auto", maxWidth: "48rem", marginBottom: "80px" }}>
           <h2 
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{ color: "#C9B8E8", fontFamily: "var(--font-display)" }}
@@ -58,10 +58,10 @@ export default function HowItWorks() {
               >
                 {step.icon}
               </div>
-              <h3 className="text-2xl font-bold mb-3" style={{ color: "#C9B8E8" }}>
+              <h3 className="text-xl md:text-2xl font-bold mb-4" style={{ color: "#C9B8E8" }}>
                 {step.title}
               </h3>
-              <p style={{ color: "rgba(201,184,232,0.6)" }}>
+              <p className="text-base md:text-lg leading-relaxed flex-1" style={{ color: "rgba(201,184,232,0.6)" }}>
                 {step.desc}
               </p>
             </motion.div>
