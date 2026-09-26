@@ -40,27 +40,27 @@ export function FeaturesSection() {
       <div className="container px-4 md:px-6 mx-auto max-w-6xl">
         <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, transform: "translateY(16px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
             className="inline-flex rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium border border-[#2e104f] bg-[#12051f] text-purple-300"
           >
             Core Experience
           </motion.div>
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+            initial={{ opacity: 0, transform: "translateY(16px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.08, ease: [0.23, 1, 0.32, 1] }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
           >
             Not just another social app.
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
+            initial={{ opacity: 0, transform: "translateY(16px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.16, ease: [0.23, 1, 0.32, 1] }}
             className="text-purple-200/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
             YourNight is a private space designed exclusively for you and your friends to turn your nights out into unforgettable memories.
@@ -71,14 +71,14 @@ export function FeaturesSection() {
           {features.map((feat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.32, 0.72, 0, 1] }}
+              initial={{ opacity: 0, transform: "translateY(24px) scale(0.97)" }}
+              whileInView={{ opacity: 1, transform: "translateY(0px) scale(1)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ type: "spring", duration: 0.6, bounce: 0.15, delay: index * 0.08 }}
               className="p-1.5 rounded-[2rem] bg-white/[0.02] border border-white/5"
             >
               <div className="h-full p-8 rounded-[calc(2rem-0.375rem)] bg-[#12051f] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] relative group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]" />
                 
                 <div className={`w-14 h-14 rounded-2xl ${feat.bg} flex items-center justify-center mb-6`}>
                   <feat.icon className={`w-7 h-7 ${feat.color}`} />
